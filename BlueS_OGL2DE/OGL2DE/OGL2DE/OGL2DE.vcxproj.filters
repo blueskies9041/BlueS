@@ -1,0 +1,156 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Resource Files\Shaders">
+      <UniqueIdentifier>{376f4dfe-0b7e-4a1a-834b-103ab317c2af}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\Graphics">
+      <UniqueIdentifier>{1e4191d6-8a88-4d77-8d5f-fcc2503b0a0f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Engine">
+      <UniqueIdentifier>{96248dce-032c-4186-a621-830f3cadc2c8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Game">
+      <UniqueIdentifier>{0b8a0d06-dfec-4e44-b112-3f4f59124ab5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Misc">
+      <UniqueIdentifier>{384fa713-2be0-4655-a0b1-eb29474803eb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Engine\OGL">
+      <UniqueIdentifier>{9db1ead3-ecf9-4073-bd92-287205347680}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Engine">
+      <UniqueIdentifier>{f7035ed0-8556-4a01-baf2-a76021371964}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Game">
+      <UniqueIdentifier>{54a50060-ca78-4669-824b-e5564bc87eb9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Misc">
+      <UniqueIdentifier>{84f5141d-8f6c-4b42-912f-27eea4b515c4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Engine\OGL">
+      <UniqueIdentifier>{01786c86-a687-4bcf-bc8b-bab25767ff02}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="include\AccessorTemplate.h">
+      <Filter>Header Files\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="include\GLLOG.h">
+      <Filter>Header Files\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="include\JustinTxtReader.h">
+      <Filter>Header Files\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Misc.h">
+      <Filter>Header Files\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Player.h">
+      <Filter>Header Files\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Text.h">
+      <Filter>Header Files\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Quad.h">
+      <Filter>Header Files\Engine\OGL</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Shader.h">
+      <Filter>Header Files\Engine\OGL</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ShaderProgram.h">
+      <Filter>Header Files\Engine\OGL</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Sprite.h">
+      <Filter>Header Files\Engine\OGL</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Texture.h">
+      <Filter>Header Files\Engine\OGL</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Window.h">
+      <Filter>Header Files\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Timer.h">
+      <Filter>Header Files\Engine</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="source\main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Misc.cpp">
+      <Filter>Source Files\Misc</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Player.cpp">
+      <Filter>Source Files\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Text.cpp">
+      <Filter>Source Files\Misc</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Timer.cpp">
+      <Filter>Source Files\Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Window.cpp">
+      <Filter>Source Files\Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Quad.cpp">
+      <Filter>Source Files\Engine\OGL</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Shader.cpp">
+      <Filter>Source Files\Engine\OGL</Filter>
+    </ClCompile>
+    <ClCompile Include="source\ShaderProgram.cpp">
+      <Filter>Source Files\Engine\OGL</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Sprite.cpp">
+      <Filter>Source Files\Engine\OGL</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Texture.cpp">
+      <Filter>Source Files\Engine\OGL</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="resources\graphics\particle.bmp">
+      <Filter>Resource Files\Graphics</Filter>
+    </None>
+    <None Include="resources\graphics\test.bmp">
+      <Filter>Resource Files\Graphics</Filter>
+    </None>
+    <None Include="resources\graphics\test2.bmp">
+      <Filter>Resource Files\Graphics</Filter>
+    </None>
+    <None Include="resources\shaders\basic.frag">
+      <Filter>Resource Files\Shaders</Filter>
+    </None>
+    <None Include="resources\shaders\basic.vert">
+      <Filter>Resource Files\Shaders</Filter>
+    </None>
+    <None Include="resources\graphics\ZeroSpriteSheet.png">
+      <Filter>Resource Files\Graphics</Filter>
+    </None>
+    <None Include="resources\shaders\text.vert">
+      <Filter>Resource Files\Shaders</Filter>
+    </None>
+    <None Include="resources\shaders\text.frag">
+      <Filter>Resource Files\Shaders</Filter>
+    </None>
+    <None Include="resources\graphics\Holstein.png">
+      <Filter>Resource Files\Graphics</Filter>
+    </None>
+    <None Include="resources\graphics\Holstein2.png">
+      <Filter>Resource Files\Graphics</Filter>
+    </None>
+    <None Include="ClassDiagram1.cd" />
+  </ItemGroup>
+</Project>
