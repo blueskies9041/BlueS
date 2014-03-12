@@ -14,7 +14,6 @@
 				
 	LAST RECORDED EDITS ON: March 04, 2014
 */
-
 #include "glew.h"
 #include "glfw3.h"
 #include "Player.h"
@@ -22,11 +21,19 @@
 #include "Text.h"
 #include "Timer.h"
 #include "Window.h"
+#include "Python.h"
+
 
 using namespace std;
 
-void main()
+int main(int argc, char*argv[])
 {
+	Py_Initialize();
+	PySys_SetArgv(argc, argv);
+	PyObject* sysPath = PySys_GetObject((char*)"path");
+	PyList_Append(sysPath, PyString_FromString("./scripts"));
+
+
 	/* Test Objects */
 
 	Timer::Instance();
@@ -53,8 +60,6 @@ void main()
 
 		
 		Justin::glfw_update_fps_counter(Window::Instance().Context());
-
-	
     }
 
 	

@@ -43,6 +43,9 @@
     <Filter Include="Source Files\Engine\OGL">
       <UniqueIdentifier>{01786c86-a687-4bcf-bc8b-bab25767ff02}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Resource Files\Scripts">
+      <UniqueIdentifier>{529e5231-8c59-4dbf-9553-d581a78232b4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\AccessorTemplate.h">
@@ -84,11 +87,11 @@
     <ClInclude Include="include\Timer.h">
       <Filter>Header Files\Engine</Filter>
     </ClInclude>
+    <ClInclude Include="include\PythonTesting.h">
+      <Filter>Header Files\Misc</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="source\main.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="source\Misc.cpp">
       <Filter>Source Files\Misc</Filter>
     </ClCompile>
@@ -118,6 +121,10 @@
     </ClCompile>
     <ClCompile Include="source\Texture.cpp">
       <Filter>Source Files\Engine\OGL</Filter>
+    </ClCompile>
+    <ClCompile Include="source\main.cpp" />
+    <ClCompile Include="source\PythonTesting.cpp">
+      <Filter>Source Files\Misc</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -151,6 +158,5 @@
     <None Include="resources\graphics\Holstein2.png">
       <Filter>Resource Files\Graphics</Filter>
     </None>
-    <None Include="ClassDiagram1.cd" />
   </ItemGroup>
 </Project>
