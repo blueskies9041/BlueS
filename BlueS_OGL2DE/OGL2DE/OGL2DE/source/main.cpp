@@ -39,6 +39,9 @@ int main(int argc, char*argv[])
 	Timer::Instance();
 	Window::Instance().Initialize(1024, 768, "Hello!");
 
+	Window& Test = Window::Instance();
+	Test.Update();
+
 	//Text T("resources/graphics/Holstein.png");
 	//Text Z("resources/graphics/Holstein2.png");	
 

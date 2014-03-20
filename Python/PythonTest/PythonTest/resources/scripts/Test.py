@@ -6,7 +6,7 @@ def Hey():
 def Math(x , y):
 	BLUE.Sum(x, y)
 
-a = 5
+a = 15
 b = 5
 def MoreMath():
 	BLUE.Sum(a, b)
