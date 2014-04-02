@@ -24,13 +24,36 @@ def UpdateGame():
 		print((Player.pos.x , Player.pos.y))
 		print((Enemy.pos.x, Enemy.pos.y))
 		print((Player.pos.Distance(Enemy.pos)))
-		AStar.Start( (2,1), (1,7))
-		AStar.Update()
+		AStar.Start( (2,2), (2,6))
 		AStar.startCell.ConsoleDebug()
-		for i in range (0, len(AStar.startCell.neighbors)):
-			AStar.startCell.neighbors[i].debug = True
-			AStar.startCell.neighbors[i].ConsoleDebug()
-
+		AStar.cells[1][4].passable = False
+		AStar.cells[2][4].passable = False
+		AStar.cells[3][4].passable = False
+		AStar.FindPath()
+		AStar.FindPath()
+		AStar.FindPath()
+		AStar.FindPath()
+		AStar.FindPath()
+		AStar.FindPath()
+		AStar.FindPath()
+		AStar.FindPath()
+		AStar.FindPath()
+		AStar.FindPath()
+		AStar.FindPath()
+		AStar.FindPath()
+		AStar.FindPath()
+		AStar.FindPath()
+		#AStar.FindPath()
+		#AStar.FindPath()
+		#AStar.FindPath()
+		#for i in range (0, len(AStar.startCell.neighbors)):
+			#AStar.startCell.neighbors[i].debug = True
+			#AStar.startCell.neighbors[i].ConsoleDebug()
+		#AStar.FindPath()
+		#AStar.FindPath()
+		#AStar.FindPath()
+		
+	AStar.Update()
 	if(AStar.cells[1][4].ContainsSprite(Player)):
 		AIE.DrawString("Success!", 512, 384)
 		
@@ -54,8 +77,9 @@ def UpdateGame():
 	Player.Update()
 	Enemy.Update()
 	Obstacle.Update()
-	#TestCell.Draw()
 	AStar.Update()
+	#TestCell.Draw()
+	#AStar.Update()
 		
 
 	

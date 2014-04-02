@@ -26,9 +26,10 @@ class Sprite:
 	def Draw(self):
 		AIE.DrawSprite(self.ID)
 	def Debug(self):
-		AIE.DrawString(self.name, int(self.TopLeft().x), int(self.TopLeft().y))
-		AIE.DrawString(str((int(self.pos.x), int(self.pos.y))), int(self.TopLeft().x), int(self.TopLeft().y + 25))
-		AIE.DrawString(str(((self.vel.x),(self.vel.y))), int(self.TopLeft().x), int(self.TopLeft().y + 50))
+		pass
+		#AIE.DrawString(self.name, int(self.TopLeft().x), int(self.TopLeft().y))
+		#AIE.DrawString(str((int(self.pos.x), int(self.pos.y))), int(self.TopLeft().x), int(self.TopLeft().y + 25))
+		#AIE.DrawString(str(((self.vel.x),(self.vel.y))), int(self.TopLeft().x), int(self.TopLeft().y + 50))
 	def Update(self):
 		self.Debug()
 		self.Move()

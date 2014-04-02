@@ -103,6 +103,7 @@
     <None Include="resources\fonts\arial.fnt" />
     <None Include="resources\images\bg.png" />
     <None Include="resources\images\crate_sideup.png" />
+    <None Include="resources\images\yellowdot.png" />
     <None Include="resources\scripts\BlueS.py" />
     <None Include="resources\scripts\Game.py" />
     <None Include="resources\shaders\StaticFW_Pixel.glsl" />

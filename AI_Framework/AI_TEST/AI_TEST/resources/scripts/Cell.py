@@ -33,7 +33,6 @@ class Cell:
 		self.owner = _owner			#cell's owner, the owner is the pathfinder that the cell belongs to
 		self.neighbors = [] 		#cell's neighbors will be its bordering cells (contained in its owner - the pathfinder) , see SetNeighbors()
 		self.debug = False			#cell's debug, flag, if enabled it will call ConsoleDebug() in .Update()
-		
 	def Hotspot(self, _hotspotID): 
 	#Hotspot function. Hotspots are a concept I learned in high school through Digipen, a Hotspot is a position inside a sprite that you want to have easy access to.
 	#In this case, 0 = Top Left Corner, 1 = Top Right Corner, 2 = Bottom Left Corner, 3 = Bottom Right Corner
@@ -97,28 +96,46 @@ class Cell:
 		else:
 			return False
 			
+	def InOpenList(self):
+	#Determines whether the cell is in the open list of its owner
+		for i in range(0 , len(self.owner.openList)):
+			if self.index.loc == self.owner.openList[i].index.loc:
+				return True
+			else:
+				continue
+		return False
+
+	def InClosedList(self):
+	#Determines whether the cell is in the closed list of its owner
+		for i in range(0 , len(self.owner.closedList)):
+			if self.index.loc == self.owner.closedList[i].index.loc:
+				return True
+			else:
+				continue
+		return False
+	
 	def SetNeighbors(self):
 	#Sets the neighbors of the cell. Checks for valid IDs on each first.
-			print "SetNeighbors() Call!\n"
-			print str(self.index.loc)
-			neighborIndexes = []
-			#CW Iteration starting from NW
-			neighborIndexes.append( CellIndex(self.index.row - 1, self.index.col - 1)) #NW
-			neighborIndexes.append( CellIndex(self.index.row - 0, self.index.col - 1)) #N
-			neighborIndexes.append( CellIndex(self.index.row + 1, self.index.col - 1)) #NE
-			neighborIndexes.append( CellIndex(self.index.row + 1, self.index.col - 0)) #E
-			neighborIndexes.append( CellIndex(self.index.row + 1, self.index.col + 1)) #SE
-			neighborIndexes.append( CellIndex(self.index.row - 0, self.index.col + 1)) #S
-			neighborIndexes.append( CellIndex(self.index.row - 1, self.index.col + 1)) #SW
-			neighborIndexes.append( CellIndex(self.index.row - 1, self.index.col + 0)) #W
-			
-			for i in range (0, len(neighborIndexes)):
-				if neighborIndexes[i].row < 0 or neighborIndexes[i].col < 0:
-					print "Passing over index " + str(neighborIndexes[i].loc)
-					pass
-				else:
-					print "Adding cell " + str(neighborIndexes[i].loc) + " to neighbors[]!"
-					self.neighbors.append(self.owner.cells[neighborIndexes[i].row][neighborIndexes[i].col])
+		print "SetNeighbors() Call!\n"
+		print str(self.index.loc)
+		neighborIndexes = []
+		#CW Iteration starting from NW
+		neighborIndexes.append( CellIndex(self.index.row - 1, self.index.col - 1)) #NW
+		neighborIndexes.append( CellIndex(self.index.row - 0, self.index.col - 1)) #N
+		neighborIndexes.append( CellIndex(self.index.row + 1, self.index.col - 1)) #NE
+		neighborIndexes.append( CellIndex(self.index.row + 1, self.index.col - 0)) #E
+		neighborIndexes.append( CellIndex(self.index.row + 1, self.index.col + 1)) #SE
+		neighborIndexes.append( CellIndex(self.index.row - 0, self.index.col + 1)) #S
+		neighborIndexes.append( CellIndex(self.index.row - 1, self.index.col + 1)) #SW
+		neighborIndexes.append( CellIndex(self.index.row - 1, self.index.col + 0)) #W
+		
+		for i in range (0, len(neighborIndexes)):
+			if (neighborIndexes[i].row < 0 or neighborIndexes[i].col < 0) or (neighborIndexes[i].row > self.owner.rows or neighborIndexes[i].col > self.owner.cols):
+				print "Passing over index " + str(neighborIndexes[i].loc)
+				pass
+			else:
+				print "Adding cell " + str(neighborIndexes[i].loc) + " to neighbors[]!"
+				self.neighbors.append(self.owner.cells[neighborIndexes[i].row][neighborIndexes[i].col])
 		
 			
 
@@ -142,10 +159,9 @@ class Cell:
 		# Manhattan Method - Total number of moves vertically/horizontally (NOT diagonal) it takes to get from self to target cell (ignores all collision)
 	#Formula - finds  the abs val of the difference between its own index and the destination cells index, then multiplies by 10
 		#If the cell is the destination cell, its h score is obviously 0. 
+		self.h = (	fabs(self.index.row - self.owner.targetCell.index.row) + fabs(self.index.col - self.owner.targetCell.index.col)	) * 10
 		if self.IsTarget():
 			self.h = 0
-			return
-		self.h = (	fabs(self.index.row - self.owner.targetCell.index.row) + fabs(self.index.row - self.owner.targetCell.index.col)	) * 10
 		#Example - The cell is at [2][1] in the grid, and the target cell is at [1][7]
 		# abs (2 - 1) + abs ( 1 - 7) = 1 + 6
 		# 1 + 6 = 7
@@ -155,12 +171,9 @@ class Cell:
 	def CalcF(self):
 	#Cell's g score + cell's h score = cell's f score
 		if self.IsStart(): #Cell can't have an fScore without a gScore
-			self.f = 0
-			return
-		if self.parent != "No Parent!":
+			self.f = 99999
+		if self.parent != "No Parent!" and self.IsStart() == False:
 			self.f = self.g + self.h
-		else:
-			self.f = "No Parent!"
 
 			
 	def ConsoleDebug(self):
@@ -191,8 +204,9 @@ class Cell:
 			AIE.DrawLine( int(self.Hotspot(2).x) , int(self.Hotspot(2).y), int(self.Hotspot(0).x), int(self.Hotspot(0).y))
 			if(self.parent != "No Parent!"):
 				AIE.DrawLine( int(self.pos.x), int(self.pos.y), int(self.parent.pos.x), int(self.parent.pos.y))
-			#AIE.DrawString( str((self.index.loc)), int(self.pos.x) - 25, int(self.pos.y) - 25) 
-	
+			AIE.DrawString( str(int(self.f)), int(self.Hotspot(0).x) + 5, int(self.Hotspot(0).y) + 10) 
+			AIE.DrawString( str(int(self.g)), int(self.Hotspot(2).x) + 5, int(self.Hotspot(2).y) - 40) 
+			AIE.DrawString( str(int(self.h)), int(self.Hotspot(3).x) - 40, int(self.Hotspot(3).y) - 40) 
 	def Update(self):
 		self.CalcH()
 		self.CalcG()

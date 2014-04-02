@@ -19,6 +19,7 @@
     <None Include="resources\images\crate_sideup.png" />
     <None Include="resources\scripts\Game.py" />
     <None Include="resources\scripts\BlueS.py" />
+    <None Include="resources\images\yellowdot.png" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source\main.cpp">
