@@ -42,7 +42,7 @@
     <GenerateManifest>true</GenerateManifest>
     <EmbedManifest>false</EmbedManifest>
     <TargetName>$(ProjectName)_d</TargetName>
-    <IncludePath>C:\Python27\include;$(IncludePath)</IncludePath>
+    <IncludePath>C:\Python27\include;$(ProjectDir)\libs\GLM\;$(IncludePath)</IncludePath>
     <LibraryPath>C:\Python27\libs;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -103,6 +103,7 @@
     <None Include="resources\fonts\arial.fnt" />
     <None Include="resources\images\bg.png" />
     <None Include="resources\images\crate_sideup.png" />
+    <None Include="resources\scripts\BlueS.py" />
     <None Include="resources\scripts\Game.py" />
     <None Include="resources\shaders\StaticFW_Pixel.glsl" />
     <None Include="resources\shaders\StaticFW_Vertex.glsl" />
@@ -110,13 +111,14 @@
   <ItemGroup>
     <ClCompile Include="source\AIE_Py.cpp" />
     <ClCompile Include="source\main.cpp" />
-    <ClCompile Include="source\PythonInterpreter.cpp" />
+    <ClCompile Include="source\PythonManager.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="include\AIE.h" />
-    <ClInclude Include="include\AIE_Py.h" />
-    <ClInclude Include="include\PyTest.h" />
-    <ClInclude Include="include\PythonInterpreter.h" />
+    <ClInclude Include="include\AIE\AIE.h" />
+    <ClInclude Include="include\AIE\AIE_Py.h" />
+    <ClInclude Include="include\Python\PythonManager.h" />
+    <ClInclude Include="include\BlueS\Sprite.h" />
+    <ClInclude Include="include\BlueS\Vec2.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

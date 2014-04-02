@@ -18,6 +18,7 @@
     <None Include="resources\images\bg.png" />
     <None Include="resources\images\crate_sideup.png" />
     <None Include="resources\scripts\Game.py" />
+    <None Include="resources\scripts\BlueS.py" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source\main.cpp">
@@ -26,21 +27,24 @@
     <ClCompile Include="source\AIE_Py.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="source\PythonInterpreter.cpp">
+    <ClCompile Include="source\PythonManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="include\AIE.h">
+    <ClInclude Include="include\AIE\AIE.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\PyTest.h">
+    <ClInclude Include="include\AIE\AIE_Py.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\AIE_Py.h">
+    <ClInclude Include="include\Python\PythonManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\PythonInterpreter.h">
+    <ClInclude Include="include\BlueS\Sprite.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\BlueS\Vec2.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

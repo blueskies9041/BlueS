@@ -1,20 +1,23 @@
-#include "AIE_Py.h"
-#include "AIE.h"
+#include "AIE/AIE_Py.h"
+#include "AIE/AIE.h"
 #include <iostream>
-
 
 PyMethodDef AIE_Functions[] = 
 {
-	{"Update",					AIE_Update,						METH_VARARGS,		"Update the AIE Framework."								},
-	{"ClearScreen",				AIE_ClearScreen,				METH_VARARGS,		"Clear the OpenGL Render scene."						},
-	{"SetBackgroundColour",		AIE_SetBackgroundColour,		METH_VARARGS,		"Sets the background Colour of the Scene"				},
-//	{"CreateSprite",			AIE_CreateSprite,				METH_VARARGS,		"Create a sprite object"								},
-	{"DestroySprite",			AIE_DestroySprite,				METH_VARARGS,		"Destroy a sprite object"								},
-	{"MoveSprite",				AIE_MoveSprite,					METH_VARARGS,		"Move Sprite"											},
-	{"DrawSprite",				AIE_DrawSprite,					METH_VARARGS,		"Draw Sprite"											},
-	{"GetMouseLocation",		AIE_GetMouseLocation,			METH_VARARGS,		"Where is the Mouse?"									},
-	{"GetMouseButton",			AIE_GetMouseButtonDown,			METH_VARARGS,		"Mouse Button Pressed?"									},
-//	{"GetMouseButtonRelease",	AIE_GetMouseButtonReleased,		METH_VARARGS,		"Mouse Button Let Go?"									},
+	{"Update",					AIE_Update,						METH_VARARGS,		"Update the AIE Framework."					},
+	{"ClearScreen",				AIE_ClearScreen,				METH_VARARGS,		"Clear the OpenGL Render scene."			},
+	{"SetBackgroundColour",		AIE_SetBackgroundColour,		METH_VARARGS,		"Sets the background Colour of the Scene"	},
+	{"CreateSprite",			AIE_CreateSprite,				METH_VARARGS,		"Create a sprite object"					},
+	{"DestroySprite",			AIE_DestroySprite,				METH_VARARGS,		"Destroy a sprite object"					},
+	{"MoveSprite",				AIE_MoveSprite,					METH_VARARGS,		"Move Sprite"								},
+	{"DrawSprite",				AIE_DrawSprite,					METH_VARARGS,		"Draw Sprite"								},
+	{"GetMouseLocation",		AIE_GetMouseLocation,			METH_VARARGS,		"Where is the Mouse?"						},
+	{"GetMouseButton",			AIE_GetMouseButtonDown,			METH_VARARGS,		"Mouse Button Pressed?"						},
+	{"IsKeyDown",				AIE_IsKeyDown,					METH_VARARGS,		"Is this key down?"							},
+	{"GetDeltaTime",			AIE_GetDeltaTime,				METH_VARARGS,		"Gets the current delta time"				},
+	{"DrawLine",				AIE_DrawLine,					METH_VARARGS,		"Draws a line to the screen"				},
+	{"DrawString",				AIE_DrawString,					METH_VARARGS,		"Draws a string to the screen"				},
+//	{"GetMouseButtonRelease",	AIE_GetMouseButtonReleased,		METH_VARARGS,		"Mouse Button Let Go?"						},
 	{NULL, NULL, 0, NULL}
 };
 
@@ -62,6 +65,7 @@ PyObject* CallPythonFunction( PyObject* a_pyFunction, PyObject* a_pyFuncArgument
     }
 	return pReturnValue;
 }
+/////
 //////////////////////////////////////////////////////////////////////////
 // This function can be called from Python to force an update to the framework. 
 //////////////////////////////////////////////////////////////////////////
@@ -105,23 +109,25 @@ PyObject* AIE_SetRenderColour(PyObject *self, PyObject *args)
 //////////////////////////////////////////////////////////////////////////
 // Basic Sprite creation and manipulation functionality
 //////////////////////////////////////////////////////////////////////////
-//PyObject* AIE_CreateSprite(PyObject *self, PyObject *args)
-//{
-//	const char* pTextureName; float fv2Size[2]; float fv2Origin[2]; float fv4UVCoords[4]; unsigned int vColour[4];
-//	if (!PyArg_ParseTuple(args, "sffffffffiiii", &pTextureName, 
-//												 &fv2Size[0], &fv2Size[1], 
-//												 &fv2Origin[0], &fv2Origin[1], 
-//												 &fv4UVCoords[0], &fv4UVCoords[1], &fv4UVCoords[2], &fv4UVCoords[3],
-//												 &vColour[0], &vColour[1], &vColour[2], &vColour[3]) ) 
-//	{
-//		ParsePyTupleError( __func__, __LINE__ );
-//		return nullptr;
-//	}
-//	//fv4UVCoords[0] = 0.f, fv4UVCoords[1] = 0.f, fv4UVCoords[2] = 1.f, fv4UVCoords[3] = 1.f;
-//	unsigned int uiSpriteID = CreateSprite( pTextureName, fv2Size, fv2Origin, fv4UVCoords, SColour(vColour[0], vColour[1], vColour[2], vColour[3]));
-//	//unsigned int uiSpriteID = CreateSprite( pTextureName, fv2Size[0], fv2Size[1], false );
-//	return Py_BuildValue("i", uiSpriteID);
-//}
+PyObject* AIE_CreateSprite(PyObject *self, PyObject *args)
+{
+	//MODIFIED BY ME. DUN DUN.
+	const char* pTextureName; float fv2Size[2]; //float fv2Origin[2]; float fv4UVCoords[4]; unsigned int vColour[4];
+
+	if (!PyArg_ParseTuple(args, "sff" , &pTextureName, 
+										&fv2Size[0], &fv2Size[1])) //, 
+												 //&fv2Origin[0], &fv2Origin[1], 
+												 //&fv4UVCoords[0], &fv4UVCoords[1], &fv4UVCoords[2], &fv4UVCoords[3],
+												 //&vColour[0], &vColour[1], &vColour[2], &vColour[3]) ) 
+	{
+		ParsePyTupleError( __func__, __LINE__ );
+		return nullptr;
+	}
+	//fv4UVCoords[0] = 0.f, fv4UVCoords[1] = 0.f, fv4UVCoords[2] = 1.f, fv4UVCoords[3] = 1.f;
+	//unsigned int uiSpriteID = CreateSprite( pTextureName, fv2Size, fv2Origin, fv4UVCoords, SColour(vColour[0], vColour[1], vColour[2], vColour[3]));
+	unsigned int uiSpriteID = CreateSprite( pTextureName, fv2Size[0], fv2Size[1], true );
+	return Py_BuildValue("i", uiSpriteID);
+}
 
 PyObject* AIE_DuplicateSprite(PyObject *self, PyObject *args)
 {
@@ -211,6 +217,17 @@ PyObject* AIE_GetSpriteScale(PyObject *self, PyObject *args)
 //////////////////////////////////////////////////////////////////////////
 PyObject* AIE_DrawLine(PyObject *self, PyObject *args)
 {
+	//Added by me
+	int iStartX, iStartY, iEndX , iEndY;
+
+	if (!PyArg_ParseTuple( args, "iiii", &iStartX, &iStartY, &iEndX, &iEndY ) ) 
+	{
+		ParsePyTupleError( __func__, __LINE__ );
+		return nullptr;
+	}
+
+	DrawLine(iStartX, iStartY, iEndX, iEndY);
+
 	Py_RETURN_NONE;
 }
 //////////////////////////////////////////////////////////////////////////
@@ -218,6 +235,18 @@ PyObject* AIE_DrawLine(PyObject *self, PyObject *args)
 //////////////////////////////////////////////////////////////////////////
 PyObject* AIE_DrawString(PyObject *self, PyObject *args)
 {
+	// Added by me
+	const char * pText;
+	float iPosX, iPosY;
+
+	if (!PyArg_ParseTuple( args, "sff", &pText, &iPosX, &iPosY ) ) 
+	{
+		ParsePyTupleError( __func__, __LINE__ );
+		return nullptr;
+	}
+
+	DrawString(pText, iPosX, iPosY);
+
 	Py_RETURN_NONE;
 }
 
@@ -226,8 +255,20 @@ PyObject* AIE_DrawString(PyObject *self, PyObject *args)
 //////////////////////////////////////////////////////////////////////////
 PyObject* AIE_IsKeyDown(PyObject *self, PyObject *args)
 {
-	Py_RETURN_NONE;
+	// ADDED MANUALLY BY ME. BEWARE.
+	int iKey;
+	if (!PyArg_ParseTuple( args, "i", &iKey ) ) 
+	{
+		ParsePyTupleError( __func__, __LINE__ );
+		return nullptr;
+	}
+	bool bIsDown = IsKeyDown(iKey);
+	if(bIsDown)
+		Py_RETURN_TRUE;
+	else
+		Py_RETURN_FALSE;
 }
+
 PyObject* AIE_GetMouseLocation(PyObject *self, PyObject *args)
 {
 	int iMouseX, iMouseY;
@@ -267,6 +308,8 @@ PyObject* AIE_GetMouseButtonDown(PyObject *self, PyObject *args)
 //////////////////////////////////////////////////////////////////////////
 // Basic Camera Control
 //////////////////////////////////////////////////////////////////////////
+
+
 PyObject* AIE_MoveCamera(PyObject *self, PyObject *args)
 {
 	Py_RETURN_NONE;
@@ -284,5 +327,13 @@ PyObject* AIE_GetCameraPosition(PyObject *self, PyObject *args)
 //////////////////////////////////////////////////////////////////////////
 PyObject* AIE_GetDeltaTime(PyObject *self, PyObject *args)
 {
-	Py_RETURN_NONE;
+	//Manually added by me! Beware! 
+	float fDeltaTime;
+	if (!PyArg_ParseTuple( args, "f", &fDeltaTime ) ) 
+	{
+		ParsePyTupleError( __func__, __LINE__ );
+		return nullptr;
+	}
+	fDeltaTime = GetDeltaTime();
+	return Py_BuildValue("f", fDeltaTime);
 }
