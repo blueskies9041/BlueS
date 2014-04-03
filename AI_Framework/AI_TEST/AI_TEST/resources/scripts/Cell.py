@@ -33,6 +33,7 @@ class Cell:
 		self.owner = _owner			#cell's owner, the owner is the pathfinder that the cell belongs to
 		self.neighbors = [] 		#cell's neighbors will be its bordering cells (contained in its owner - the pathfinder) , see SetNeighbors()
 		self.debug = False			#cell's debug, flag, if enabled it will call ConsoleDebug() in .Update()
+		self.debugSprite = AIE.CreateSprite("./images/yellowdot.png", 25, 25)
 	def Hotspot(self, _hotspotID): 
 	#Hotspot function. Hotspots are a concept I learned in high school through Digipen, a Hotspot is a position inside a sprite that you want to have easy access to.
 	#In this case, 0 = Top Left Corner, 1 = Top Right Corner, 2 = Bottom Left Corner, 3 = Bottom Right Corner
@@ -204,9 +205,11 @@ class Cell:
 			AIE.DrawLine( int(self.Hotspot(2).x) , int(self.Hotspot(2).y), int(self.Hotspot(0).x), int(self.Hotspot(0).y))
 			if(self.parent != "No Parent!"):
 				AIE.DrawLine( int(self.pos.x), int(self.pos.y), int(self.parent.pos.x), int(self.parent.pos.y))
+				AIE.MoveSprite(self.debugSprite, int(self.pos.x), int(self.pos.y))
+				AIE.DrawSprite(self.debugSprite)
 			AIE.DrawString( str(int(self.f)), int(self.Hotspot(0).x) + 5, int(self.Hotspot(0).y) + 10) 
 			AIE.DrawString( str(int(self.g)), int(self.Hotspot(2).x) + 5, int(self.Hotspot(2).y) - 40) 
-			AIE.DrawString( str(int(self.h)), int(self.Hotspot(3).x) - 40, int(self.Hotspot(3).y) - 40) 
+			AIE.DrawString( str(int(self.h)), int(self.Hotspot(3).x) - 40, int(self.Hotspot(3).y) - 40)			
 	def Update(self):
 		self.CalcH()
 		self.CalcG()
